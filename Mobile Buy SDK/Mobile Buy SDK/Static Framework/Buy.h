@@ -52,7 +52,7 @@
 #import "BUYTaxLine.h"
 
 #import "BUYApplePayAdditions.h"
-#import "BUYApplePayHelpers.h"
+#import "BUYApplePayHelper.h"
 #import "BUYApplePayPaymentProvider.h"
 #import "BUYPaymentController.h"
 #import "BUYPaymentProvider.h"
