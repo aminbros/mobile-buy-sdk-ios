@@ -45,6 +45,9 @@
 #import "BUYError.h"
 #import "BUYShop.h"
 #import "BUYImage.h"
+#import "BUYTUserNoteCell.h"
+#import "BUYUserNoteViewController.h"
+
 
 CGFloat const BUYMaxProductViewWidth = 414.0; // We max out to the width of the iPhone 6+
 CGFloat const BUYMaxProductViewHeight = 640.0;
@@ -55,7 +58,7 @@ CGFloat const BUYMaxProductViewHeight = 640.0;
 - (void)postCheckoutCompletion:(BUYCheckout *)checkout error:(NSError *)error;
 @end
 
-@interface BUYProductViewController () <BUYThemeable, UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, BUYVariantSelectionDelegate, BUYNavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface BUYProductViewController () <BUYThemeable, UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate, BUYVariantSelectionDelegate, BUYNavigationControllerDelegate, BUYUserNoteViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSString *productId;
 @property (nonatomic, strong) BUYProductVariant *selectedProductVariant;
@@ -324,6 +327,7 @@ CGFloat const BUYMaxProductViewHeight = 640.0;
 	if (self.product) {
 		rows += 1; // product title and price
 		rows += self.shouldShowVariantSelector;
+		rows += self.shouldEnableUserNote;
 		rows += self.shouldShowDescription;
 	}
 	return rows;
@@ -344,13 +348,26 @@ CGFloat const BUYMaxProductViewHeight = 640.0;
 		cell.accessoryType = self.shouldEnableVariantSelection ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
 		self.variantCell = cell;
 		theCell = cell;
-	} else if ((indexPath.row == 2 && self.shouldShowDescription) || (indexPath.row == 1 && self.shouldShowVariantSelector == NO && self.shouldShowDescription)) {
+	} else if(self.shouldEnableUserNote && (indexPath.row == 1 + self.shouldShowVariantSelector)) {
+		BUYTUserNoteCell *cell = [[BUYTUserNoteCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"userNoteCell"];
+		cell.textLabel.text = @"User Note";
+		
+#define NOTE_SINGLE_LINE_MAX_LEN 80
+		// clip note for displaying
+		NSString *note = self.userNote == nil ? @"" : self.userNote;
+		NSRange range = [note rangeOfString:@"\n"];
+		if(range.location != NSNotFound) {
+			note = [note substringToIndex:range.location];
+		}
+		cell.detailTextLabel.text = note;
+		theCell = cell;
+	} else if (self.shouldShowDescription && (indexPath.row == 1 + self.shouldShowVariantSelector + self.shouldEnableUserNote)) {
 		BUYProductDescriptionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"descriptionCell"];
 		cell.descriptionHTML = self.product.htmlDescription;
 		cell.separatorInset = UIEdgeInsetsMake(0, CGRectGetWidth(self.productView.tableView.bounds), 0, 0);
 		theCell = cell;
 	}
-	
+
 	[theCell setTheme:self.theme];
 	return theCell;
 }
@@ -366,7 +383,34 @@ CGFloat const BUYMaxProductViewHeight = 640.0;
 		BUYOptionSelectionNavigationController *optionSelectionNavigationController = [[BUYOptionSelectionNavigationController alloc] initWithRootViewController:optionSelectionViewController];
 		[optionSelectionNavigationController setTheme:self.theme];
 		[self presentViewController:optionSelectionNavigationController animated:YES completion:nil];
+	} else if(self.shouldEnableUserNote && (indexPath.row == 1 + self.shouldShowVariantSelector)) {
+		[self.productView.tableView deselectRowAtIndexPath:indexPath animated:YES];
+		BUYUserNoteViewController *vc = [[BUYUserNoteViewController alloc] initWithProduct:self.product theme:self.theme];
+		vc.delegate = self;
+		vc.initialNote = self.userNote == nil ? @"" : self.userNote;
+		
+		BUYOptionSelectionNavigationController *optionSelectionNavigationController = [[BUYOptionSelectionNavigationController alloc] initWithRootViewController:vc];
+		[optionSelectionNavigationController setTheme:self.theme];
+		[self presentViewController:optionSelectionNavigationController animated:YES completion:nil];
 	}
+}
+
+#pragma mark - BUYUserNoteViewControllerDelegate
+
+- (void)userNoteViewControllerDone:(BUYUserNoteViewController *)userNoteViewController {
+	self.userNote = userNoteViewController.textView.text;
+	
+	[self.productView.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 + self.shouldShowVariantSelector inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+	[self dismissViewControllerAnimated:YES completion:^{
+		[self setNeedsStatusBarAppearanceUpdate];
+		[self scrollViewDidScroll:self.productView.tableView];
+	}];
+}
+
+- (void)userNoteViewControllerCancel:(BUYUserNoteViewController *)userNoteViewController {
+	[self dismissViewControllerAnimated:YES completion:^{
+		[self setNeedsStatusBarAppearanceUpdate];
+	}];
 }
 
 #pragma mark - BUYVariantSelectionViewControllerDelegate

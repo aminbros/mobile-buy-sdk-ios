@@ -29,9 +29,9 @@
 #import "ProductListViewController.h"
 
 #warning - Enter your shop domain and API Key
-#define SHOP_DOMAIN @""
-#define API_KEY @""
-#define CHANNEL_ID @""
+#define SHOP_DOMAIN @"ruin-days.myshopify.com"
+#define API_KEY @"0560ab0debbfbd2d2544b049b0b557a2"
+#define CHANNEL_ID @"12560708"
 
 @interface CollectionListViewController ()
 

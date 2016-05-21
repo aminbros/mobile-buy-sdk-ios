@@ -217,6 +217,12 @@
 		90F593091B0D5F4C0026B382 /* BUYClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F592FD1B0D5F4C0026B382 /* BUYClientTest.m */; };
 		90F5930A1B0D5F4C0026B382 /* BUYLineItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F592FE1B0D5F4C0026B382 /* BUYLineItemTest.m */; };
 		90F5930B1B0D5F4C0026B382 /* BUYObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F592FF1B0D5F4C0026B382 /* BUYObjectTests.m */; };
+		94B3ACE01CEFF64E00E70619 /* BUYUserNoteViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 94DA56031CEFEBA400056D3E /* BUYUserNoteViewController.h */; };
+		94B3ACE11CEFF64E00E70619 /* BUYUserNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DA56041CEFEBA400056D3E /* BUYUserNoteViewController.m */; };
+		94B3ACE21CEFF65600E70619 /* BUYTUserNoteCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 94DA56001CEFE76900056D3E /* BUYTUserNoteCell.h */; };
+		94B3ACE31CEFF65600E70619 /* BUYTUserNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DA56011CEFE76900056D3E /* BUYTUserNoteCell.m */; };
+		94DA56021CEFE76900056D3E /* BUYTUserNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DA56011CEFE76900056D3E /* BUYTUserNoteCell.m */; };
+		94DA56051CEFEBA400056D3E /* BUYUserNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DA56041CEFEBA400056D3E /* BUYUserNoteViewController.m */; };
 		BE1007951B6038150031CEE7 /* BUYProductVariant+Options.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1007931B6038150031CEE7 /* BUYProductVariant+Options.h */; };
 		BE1007961B6038150031CEE7 /* BUYProductVariant+Options.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1007941B6038150031CEE7 /* BUYProductVariant+Options.m */; };
 		BE10079B1B6165EC0031CEE7 /* BUYOptionValueCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1007991B6165EC0031CEE7 /* BUYOptionValueCell.h */; };
@@ -464,6 +470,10 @@
 		90F593001B0D5F4C0026B382 /* BUYTestConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUYTestConstants.h; sourceTree = "<group>"; };
 		90FC31A61B50371600AFAB51 /* BUYProductViewHeaderBackgroundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = BUYProductViewHeaderBackgroundImageView.h; path = "Product View/BUYProductViewHeaderBackgroundImageView.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		90FC31A71B50371600AFAB51 /* BUYProductViewHeaderBackgroundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BUYProductViewHeaderBackgroundImageView.m; path = "Product View/BUYProductViewHeaderBackgroundImageView.m"; sourceTree = "<group>"; };
+		94DA56001CEFE76900056D3E /* BUYTUserNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BUYTUserNoteCell.h; path = "Product View/BUYTUserNoteCell.h"; sourceTree = "<group>"; };
+		94DA56011CEFE76900056D3E /* BUYTUserNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BUYTUserNoteCell.m; path = "Product View/BUYTUserNoteCell.m"; sourceTree = "<group>"; };
+		94DA56031CEFEBA400056D3E /* BUYUserNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUYUserNoteViewController.h; sourceTree = "<group>"; };
+		94DA56041CEFEBA400056D3E /* BUYUserNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUYUserNoteViewController.m; sourceTree = "<group>"; };
 		BE1007931B6038150031CEE7 /* BUYProductVariant+Options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BUYProductVariant+Options.h"; sourceTree = "<group>"; };
 		BE1007941B6038150031CEE7 /* BUYProductVariant+Options.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BUYProductVariant+Options.m"; sourceTree = "<group>"; };
 		BE1007991B6165EC0031CEE7 /* BUYOptionValueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUYOptionValueCell.h; sourceTree = "<group>"; };
@@ -644,6 +654,8 @@
 				90516CA21B4D771400E35E45 /* BUYVariantOptionView.m */,
 				BE9496B01B4D96D800B38949 /* BUYVariantSelectionViewController.h */,
 				BE9496B11B4D96D800B38949 /* BUYVariantSelectionViewController.m */,
+				94DA56031CEFEBA400056D3E /* BUYUserNoteViewController.h */,
+				94DA56041CEFEBA400056D3E /* BUYUserNoteViewController.m */,
 				BE1007981B6165CD0031CEE7 /* Cells */,
 			);
 			name = "Variant Selection";
@@ -720,6 +732,8 @@
 				90516C981B4D76D900E35E45 /* BUYProductHeaderCell.m */,
 				90516C991B4D76D900E35E45 /* BUYProductVariantCell.h */,
 				90516C9A1B4D76D900E35E45 /* BUYProductVariantCell.m */,
+				94DA56001CEFE76900056D3E /* BUYTUserNoteCell.h */,
+				94DA56011CEFE76900056D3E /* BUYTUserNoteCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1207,6 +1221,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94B3ACE21CEFF65600E70619 /* BUYTUserNoteCell.h in Sources */,
+				94B3ACE31CEFF65600E70619 /* BUYTUserNoteCell.m in Sources */,
+				94B3ACE01CEFF64E00E70619 /* BUYUserNoteViewController.h in Sources */,
+				94B3ACE11CEFF64E00E70619 /* BUYUserNoteViewController.m in Sources */,
 				901930E31BC5B9BC00D1134E /* BUYApplePayHelpers.m in Sources */,
 				901930E41BC5B9BC00D1134E /* BUYOptionSelectionViewController.m in Sources */,
 				901930E51BC5B9BC00D1134E /* BUYVariantOptionView.m in Sources */,
@@ -1292,8 +1310,10 @@
 				90F5930B1B0D5F4C0026B382 /* BUYObjectTests.m in Sources */,
 				90F593041B0D5F4C0026B382 /* BUYIntegrationTest.m in Sources */,
 				90F593081B0D5F4C0026B382 /* BUYClientTest_Storefront.m in Sources */,
+				94DA56051CEFEBA400056D3E /* BUYUserNoteViewController.m in Sources */,
 				90BBCD731B87B6BA00FCCE51 /* BUYPKContact.m in Sources */,
 				906CF1B11B8B66AE001F7D5B /* BUYCNPostalAddress.m in Sources */,
+				94DA56021CEFE76900056D3E /* BUYTUserNoteCell.m in Sources */,
 				906CF1AD1B8B5F7D001F7D5B /* BUYNSPersonNameComponents.m in Sources */,
 				BE98DB5C1BB1F4D000C29564 /* OHHTTPStubsResponse+Helpers.m in Sources */,
 			);

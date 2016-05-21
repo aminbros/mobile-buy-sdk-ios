@@ -75,6 +75,10 @@
  */
 @property (nonatomic, assign, readonly) BOOL isLoading;
 
+
+@property (nonatomic, assign) BOOL shouldEnableUserNote;
+@property (nonatomic, retain) NSString *userNote;
+
 /**
  *  This is a convenience method as an alternative to presentViewController: which will force portrait orientation.  This method is only 
  *  required when presenting from a landscape view controller.

@@ -324,6 +324,7 @@
     theme.showsProductImageBackground = self.showsProductImageBackground;
     BUYProductViewController *productViewController = [[BUYProductViewController alloc] initWithClient:self.client theme:theme];
     productViewController.merchantId = MERCHANT_ID;
+    productViewController.shouldEnableUserNote = YES;
     return productViewController;
 }
 
